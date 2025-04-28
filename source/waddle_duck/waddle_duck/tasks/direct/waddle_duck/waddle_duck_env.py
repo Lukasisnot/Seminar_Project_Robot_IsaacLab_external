@@ -60,7 +60,7 @@ class WaddleDuckEnv(DirectRLEnv):
 
     def _pre_physics_step(self, actions: torch.Tensor) -> None:
         self.actions = actions.clone()
-        self.target_pos = torch.sign(self.actions) * self.cfg.action_scale + self.joint_pos
+        self.target_pos = self.actions * self.cfg.action_scale + self.joint_pos
         # self.actions = torch.tensor([[45, 45, 45, 45]] * self.num_envs, device=self.device)
         # self.actions = torch.tensor([[0.5, 0.5, 0.5, 0.5]] * self.num_envs, device=self.device)
         # self.actions = torch.tensor([[1.5, 2.5, 1.5, 2.5]] * self.num_envs, device=self.device)
